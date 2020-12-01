@@ -168,6 +168,7 @@ env = Environment(
     "#selfdrive/sensord",
     "#selfdrive/ui",
     "#cereal/messaging",
+    "#cereal/visionipc",
     "#cereal",
     "#opendbc/can",
   ],
@@ -264,16 +265,15 @@ else:
 Export('cereal', 'messaging')
 
 SConscript(['selfdrive/common/SConscript'])
-Import('_common', '_visionipc', '_gpucommon', '_gpu_libs')
+Import('_common', '_gpucommon', '_gpu_libs')
 
 if SHARED:
-  common, visionipc, gpucommon = abspath(common), abspath(visionipc), abspath(gpucommon)
+  common, gpucommon = abspath(common), abspath(gpucommon)
 else:
   common = [_common, 'json11']
-  visionipc = _visionipc
   gpucommon = [_gpucommon] + _gpu_libs
 
-Export('common', 'visionipc', 'gpucommon')
+Export('common', 'gpucommon')
 
 SConscript(['opendbc/can/SConscript'])
 
@@ -282,8 +282,8 @@ SConscript(['common/kalman/SConscript'])
 SConscript(['common/transformations/SConscript'])
 SConscript(['phonelibs/SConscript'])
 
-SConscript(['selfdrive/camerad/SConscript'])
-SConscript(['selfdrive/modeld/SConscript'])
+# SConscript(['selfdrive/camerad/SConscript'])
+# SConscript(['selfdrive/modeld/SConscript'])
 
 SConscript(['selfdrive/controls/lib/cluster/SConscript'])
 SConscript(['selfdrive/controls/lib/lateral_mpc/SConscript'])
@@ -294,12 +294,12 @@ SConscript(['selfdrive/boardd/SConscript'])
 SConscript(['selfdrive/proclogd/SConscript'])
 SConscript(['selfdrive/clocksd/SConscript'])
 
-SConscript(['selfdrive/loggerd/SConscript'])
+# SConscript(['selfdrive/loggerd/SConscript'])
 
 SConscript(['selfdrive/locationd/SConscript'])
 SConscript(['selfdrive/locationd/models/SConscript'])
 SConscript(['selfdrive/sensord/SConscript'])
-SConscript(['selfdrive/ui/SConscript'])
+# SConscript(['selfdrive/ui/SConscript'])
 
 if arch != "Darwin":
   SConscript(['selfdrive/logcatd/SConscript'])
