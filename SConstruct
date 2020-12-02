@@ -301,7 +301,7 @@ SConscript(['selfdrive/clocksd/SConscript'])
 SConscript(['selfdrive/locationd/SConscript'])
 SConscript(['selfdrive/locationd/models/SConscript'])
 SConscript(['selfdrive/sensord/SConscript'])
-# SConscript(['selfdrive/ui/SConscript'])
+SConscript(['selfdrive/ui/SConscript'])
 
 if arch != "Darwin":
   SConscript(['selfdrive/logcatd/SConscript'])
