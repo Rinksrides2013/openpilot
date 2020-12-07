@@ -109,6 +109,9 @@ void CameraBuf::init(cl_device_id device_id, cl_context context, CameraState *s,
 }
 
 CameraBuf::~CameraBuf() {
+  for (int i = 0; i < frame_buf_count; i++) {
+    visionbuf_free(&camera_bufs[i]);
+  }
   CL_CHECK(clReleaseKernel(krnl_debayer)); // TODO: release only if created
   CL_CHECK(clReleaseCommandQueue(q));
 }
